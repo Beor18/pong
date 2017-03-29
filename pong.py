@@ -82,9 +82,18 @@ while True:
 	
 	#Posicion Paleta IA
 	pantalla.blit(sprite_paleta_ia.image, sprite_paleta_ia.rect)
+	
+	#Colision
+	if pygame.sprite.collide_rect(sprite_pelota, sprite_paleta_jugador):
+		# bolavely = bolavely *-1
+		print "Colision"
+		
+	if pygame.sprite.collide_rect(sprite_pelota, sprite_paleta_ia):
+		# bolavely = bolavely *-1
+		print "Colision 2"
 		
 	#Cuadros por segundos
-	print "FPS: ", clock.tick(FPS)
+	# print "FPS: ", clock.tick(FPS)
 		
 		
 	pygame.display.update()
