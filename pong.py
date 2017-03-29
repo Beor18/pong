@@ -27,7 +27,7 @@ sprite_pelota.rect.y = 100
 bolavelx = 10
 bolavely = 10
 
-#Reloj
+#Cuadros Por segundo
 clock = pygame.time.Clock()
 FPS = 60
 
@@ -43,6 +43,7 @@ while True:
 	
 	#Movimiento bolax
 	sprite_pelota.rect.x += bolavelx
+	sprite_pelota.rect.y += bolavely
 	
 	#fondo
 	pantalla.blit(fondo,(0,0))
@@ -53,14 +54,21 @@ while True:
 	if sprite_pelota.rect.x+ sprite_pelota.rect.width > ancho:
 		bolavelx = bolavelx *-1
 		
-	if sprite_pelota.rect.x < 0:
+	elif sprite_pelota.rect.x < 0:
 		bolavelx = bolavelx *-1
 		
+	elif sprite_pelota.rect.y+ sprite_pelota.rect.height > alto:
+		bolavely = bolavely *-1
+	
+	elif sprite_pelota.rect.y < 0:
+		bolavely = bolavely *-1
 		
-	# sprite_pelota.rect.x = bolavelx
+		
+	#Cuadros por segundos
 	print clock.tick(FPS)
 	
 	#otros objetos
 	pantalla.blit(paleta_jugador, (50,150))
-	pantalla.blit(paleta_ia, (580,150))		
+	pantalla.blit(paleta_ia, (580,150))	
+		
 	pygame.display.update()
