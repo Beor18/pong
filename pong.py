@@ -9,11 +9,7 @@ alto = 480
 pantalla = pygame.display.set_mode((ancho,alto))
 
 fondo = pygame.image.load("imagenes/fondo1.jpg")
-paleta_jugador = pygame.image.load("imagenes/paleta.png")
-paleta_ia = pygame.image.load("imagenes/paleta.png")
 
-# bolax = 100
-# bolay = 300
 
 #Definir Sprite Pelota
 pelota = pygame.image.load("imagenes/pelota1.png")
@@ -26,6 +22,24 @@ sprite_pelota.rect.y = 100
 #Velocidad
 bolavelx = 10
 bolavely = 10
+
+#Definir Sprite Paleta Jugador
+paleta_jugador = pygame.image.load("imagenes/paleta.png")
+sprite_paleta_jugador = pygame.sprite.Sprite()
+sprite_paleta_jugador.image = paleta_jugador 
+sprite_paleta_jugador.rect = paleta_jugador.get_rect()
+sprite_paleta_jugador.rect.x = 50
+sprite_paleta_jugador.rect.y = 150
+
+
+#Definir Sprite Paleta IA
+paleta_ia = pygame.image.load("imagenes/paleta.png")
+sprite_paleta_ia = pygame.sprite.Sprite()
+sprite_paleta_ia.image = paleta_ia 
+sprite_paleta_ia.rect = paleta_ia.get_rect()
+sprite_paleta_ia.rect.x = 580
+sprite_paleta_ia.rect.y = 150
+
 
 #Cuadros Por segundo
 clock = pygame.time.Clock()
@@ -62,13 +76,15 @@ while True:
 	
 	elif sprite_pelota.rect.y < 0:
 		bolavely = bolavely *-1
-		
+	
+	#Posicion Paleta Jugador
+	pantalla.blit(sprite_paleta_jugador.image, sprite_paleta_jugador.rect)
+	
+	#Posicion Paleta IA
+	pantalla.blit(sprite_paleta_ia.image, sprite_paleta_ia.rect)
 		
 	#Cuadros por segundos
-	print clock.tick(FPS)
-	
-	#otros objetos
-	pantalla.blit(paleta_jugador, (50,150))
-	pantalla.blit(paleta_ia, (580,150))	
+	print "FPS: ", clock.tick(FPS)
+		
 		
 	pygame.display.update()
