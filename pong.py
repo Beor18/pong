@@ -46,7 +46,7 @@ while True:
 	pantalla.blit(fondo,(0,0))
 	
 	#Posicion Pelota
-	pantalla.blit(sprite_pelota.image, sprite_pelota.rect)
+	# pantalla.blit(sprite_pelota.image, sprite_pelota.rect)
 	sprite_pelota.rect.x = bolavelx
 	
 	
