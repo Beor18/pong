@@ -40,6 +40,7 @@ sprite_paleta_ia.image = paleta_ia
 sprite_paleta_ia.rect = paleta_ia.get_rect()
 sprite_paleta_ia.rect.x = 580
 sprite_paleta_ia.rect.y = 150
+sprite_paleta_ia.centery = sprite_paleta_ia.rect.height/2
 
 
 #Cuadros Por segundo
@@ -67,6 +68,11 @@ while True:
 				sprite_paleta_jugador.rect.y += paletaJ_vely
 			if teclas[K_UP]:
 				sprite_paleta_jugador.rect.y -= paletaJ_vely
+			
+			if teclas[K_s]:
+				sprite_paleta_ia.rect.y -= paletaI_vely
+			if teclas[K_w]:
+				sprite_paleta_ia.rect.y -= paletaI_vely
 	
 	#Movimiento bolax
 	sprite_pelota.rect.x += bolavelx
