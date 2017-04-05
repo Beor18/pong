@@ -47,6 +47,19 @@ FPS = 60
 
 while True:
 	
+	#Teclado
+	for evento in pygame.event.get():
+		if evento.type == QUIT:
+			sys.exit()
+		if evento.type == pygame.KEYDOWN:
+			if evento.key == pygame.K_DOWN:
+				sprite_paleta_jugador.rect.y += bolavely
+				print "Moviendo Abajo"
+		if evento.type == pygame.KEYUP:
+			if evento.key == pygame.K_UP:
+				sprite_paleta_jugador.rect.y -= bolavely
+				print "Moviendo Arriba"	
+	
 	#Salir
 	for evento in pygame.event.get():
 		if evento.type == QUIT:
@@ -83,17 +96,29 @@ while True:
 	#Posicion Paleta IA
 	pantalla.blit(sprite_paleta_ia.image, sprite_paleta_ia.rect)
 	
+	
+	# Limites de la pantalla.
+	if sprite_paleta_jugador.rect.y + sprite_paleta_jugador.rect.height > alto:
+		sprite_paleta_jugador.rect.y = sprite_paleta_jugador1.rect.height
+	elif sprite_paleta_jugador.rect.y < 0:
+		sprite_paleta_jugador.rect.y = 0
+	elif sprite_paleta_jugador.rect.y + sprite_paleta_jugador.rect.height > alto:
+		sprite_paleta_ia.rect.y = sprite_paleta_jugador.rect.height
+	elif sprite_paleta_ia.rect.y < 0:
+		sprite_paleta_ia.rect.y = 0
+	
 	#Colision
 	if pygame.sprite.collide_rect(sprite_pelota, sprite_paleta_jugador):
-		# bolavely = bolavely *-1
+		bolavely = bolavely*-1
 		print "Colision"
 		
-	if pygame.sprite.collide_rect(sprite_pelota, sprite_paleta_ia):
-		# bolavely = bolavely *-1
+	elif pygame.sprite.collide_rect(sprite_pelota, sprite_paleta_ia):
+		bolavely = bolavely*-1
 		print "Colision 2"
 		
 	#Cuadros por segundos
-	# print "FPS: ", clock.tick(FPS)
+	print "FPS: ", clock.tick(FPS)
+	
 		
 		
 	pygame.display.update()
