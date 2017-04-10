@@ -2,6 +2,7 @@
 # PONG, THE REVENGE OF THE DIEGO
 
 import pygame, sys
+import pygame.mixer
 from pygame.locals import *
 
 ancho = 640
@@ -10,6 +11,8 @@ pantalla = pygame.display.set_mode((ancho,alto))
 
 fondo = pygame.image.load("imagenes/fondo1.jpg")
 
+pygame.mixer.init()
+sonido_paleta = pygame.mixer.Sound("sonidos/tennis.ogg")
 
 #Definir Sprite Pelota
 pelota = pygame.image.load("imagenes/pelota1.png")
@@ -49,6 +52,13 @@ FPS = 60
 
 paletaJ_vely = 15
 paletaI_vely = 15
+
+#Puntaje
+
+pygame.font.init()
+fuente_puntaje = pygame.font.Font("fuente/DroidSans.ttf", 30)
+puntaje = fuente_puntaje.render("Puntaje: ", 0,(255,0,255 ))
+puntos = 0
 while True:
 	
 	#Salir
@@ -122,10 +132,11 @@ while True:
 	if sprite_pelota.rect.colliderect(sprite_paleta_ia):
 		bolavelx = bolavelx*-1
 		print "COLISION IA"
-		
+			
 	#Cuadros por segundos
 	print "FPS: ", clock.tick(FPS)
 	
-		
+	render_puntos = fuente_puntaje.render(str(puntos), 0, (255,0,0))
+	pantalla.blit(puntaje, (170,20))
 		
 	pygame.display.update()
